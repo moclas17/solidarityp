@@ -16,6 +16,10 @@ import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import { FloatingLabel, Form } from 'react-bootstrap';
 import { postCollection } from '../../redux/actions';
+<<<<<<< HEAD
+import Swal from 'sweetalert2';
+=======
+>>>>>>> miting_develop
 
 const AddCollectionModal = () => {
   const {container} = s;
@@ -26,8 +30,13 @@ const AddCollectionModal = () => {
   const [mintPrice, setMintPrice] = useState(0);
   const [fechaLanzamiento, setFechaLanzamiento] = useState("");
   const [baseUri, setBaseUri] = useState(""); 
+<<<<<<< HEAD
+  const [msg, setMsg] = useState("");
+  const [className, setClassName] = useState("");
+=======
   // const [msg, setMsg] = useState("");
   // const [className, setClassName] = useState("");
+>>>>>>> miting_develop
   //const [isActive, setIsActive] = useState(false);
   const dispatch = useDispatch();
   const { errorClass, errorMessage } = useSelector(state => state.errorNewCollection);
@@ -48,6 +57,80 @@ const AddCollectionModal = () => {
       fechaLanzamiento: fechaLanzamiento+":00-05:00",
       baseUri: baseUri
     }
+<<<<<<< HEAD
+    // postCollection(data);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure to create this collection?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, create it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        cleanForm();
+        axios.post("https://solidarityback.herokuapp.com/adminDashboard",data).then(function(response){
+        setClassName("alert alert-success");
+        setMsg(JSON.stringify(response.data));
+        handleClose();
+        Swal.fire(
+          'Created!',
+          'The Collection had been created successfully.',
+          'success'
+        )
+      }).catch(function (error){
+        console.log(error);
+          setClassName("alert alert-danger");
+          setMsg(JSON.stringify(error));
+      });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        handleClose();
+        cleanForm();
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'The collection wasnt created',
+          'error'
+        )
+      }
+    })
+  //  // axios.post();
+    
+  }
+
+  const cleanForm = () => {
+    setNameCollection("");
+    setSymbol("");
+    setMaxSupply(0);
+    setMintPrice(0);
+    setFechaLanzamiento("");
+    setBaseUri(""); 
+    setMsg("");
+    setClassName("");
+  }
+
+  const validateFilledFields = () => {
+    return (
+            nameCollection === "" ||
+            symbol === "" || 
+            maxSupply === 0 ||
+            mintPrice === 0 ||
+            fechaLanzamiento === ""
+          ); 
+  }
+
+=======
     postCollection(data);
   //  // axios.post();
     axios.post("https://solidarityback.herokuapp.com/adminDashboard",data).then(function(response){
@@ -60,6 +143,7 @@ const AddCollectionModal = () => {
         // setMsg(JSON.stringify(error));
     });
   }
+>>>>>>> miting_develop
   return(   
     <div className={container}>
       
@@ -71,7 +155,11 @@ const AddCollectionModal = () => {
         <Modal.Body>
           <Modal.Title>{"Create a new Collection"}</Modal.Title>
       <br />
+<<<<<<< HEAD
+      <div id="msg" className={className}>{msg}</div>
+=======
       <div id="msg" className={errorClass}>{errorMessage}</div>
+>>>>>>> miting_develop
       <form onSubmit={submitForm} >
           <FloatingLabel
           label="Collection Name:"
@@ -115,7 +203,13 @@ const AddCollectionModal = () => {
             <Form.Control type="text" placeholder="DD/MM/YYYY" id="uri" 
               value={baseUri} onChange={(e)=>setBaseUri(e.target.value)} />
           </FloatingLabel>
+<<<<<<< HEAD
+          <Button type="submit" className="btn btn-primary" id="sumit" disabled={validateFilledFields()}>
+            Submit
+          </Button>
+=======
         <button type="submit" className="btn btn-primary" id="sumit">Submit</button>
+>>>>>>> miting_develop
           <Button variant="danger" onClick={handleClose}>
             Cancel
           </Button>
