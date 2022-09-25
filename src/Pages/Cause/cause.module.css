@@ -13,6 +13,7 @@
   margin-top: 60px;
 }
 
+.buttonContainerCenter,
 .buttonContainer{
   display: flex;
   flex-direction: row;
@@ -22,3 +23,11 @@
 }
 
 .title {text-transform: capitalize !important;}
+
+.collectionImage {
+  width: 300px;
+}
+
+.buttonContainerCenter {
+  justify-content: center;
+}
