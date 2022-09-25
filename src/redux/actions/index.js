@@ -31,7 +31,7 @@ export const OPTIMISM_MAIN_TOKEN = 'OPTIMISM';
 export const OPTIMISM_CHAINID = '10';
 
 //Constants
-export const INVALID_RED = 'Invalid Red';
+export const INVALID_NETWORK = 'INVALID NETWORK';
 
 export const connectWallet = () => {
     window.ethereum.request({
@@ -176,22 +176,22 @@ export const getActualRed = (chainId) => {
   }
     switch(chainId) {
       //Ethereum
-      case ETHEREUM_CHAINID:
-        payload.network = ETHEREUM;
-        payload.token = ETHEREUM_MAIN_TOKEN;
-        break;
+      // case ETHEREUM_CHAINID:
+      //   payload.network = ETHEREUM;
+      //   payload.token = ETHEREUM_MAIN_TOKEN;
+      //   break;
       //Polygon
       case POLYGON_CHAINID:
         payload.network = POLYGON;
         payload.token = POLYGON_MAIN_TOKEN;
         break;
       //Optimism
-      case '10':
-        payload.network = OPTIMISM;
-        payload.token = OPTIMISM_MAIN_TOKEN;
-        break;
+      // case '10':
+      //   payload.network = OPTIMISM;
+      //   payload.token = OPTIMISM_MAIN_TOKEN;
+      //   break;
       default:
-        payload.network = INVALID_RED;
+        payload.network = INVALID_NETWORK;
         break;
     }
   return  (dispatch) => {
@@ -221,7 +221,14 @@ export const setConnectWalletSpinnerStatus = (status) => {
 }
 
 export const getAdminWallets = () => {
-  return ["0x7a4113bc06a8b9fa457cbbc07f48eddddfc5473f", "0x76d9995e68a44b786a665e5631d06fbbda047ee2"];
+  return [
+    //Guillermo
+    "0x76d9995e68a44b786a665e5631d06fbbda047ee2",
+    //Erik
+    "0x0e88AC34917a6BF5E36bFdc2C6C658E58078A1e6",
+    //Mike
+    "0x105f83C74aD66776e317ABa4AeC1FB392cCa7c37"
+  ];
 }
 
 export const getMyCollection = (userWallet) => { 
