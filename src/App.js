@@ -34,7 +34,7 @@ function App() {
   const wallet = useSelector(state => state.user.address);
   const adminWallets = getAdminWallets();
   const isAdmin = adminWallets.includes(wallet);
-
+  //console.log(isAdmin);
   useEffect(()=> {
   }, [dispatch]);
 
